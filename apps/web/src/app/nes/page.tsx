@@ -10,7 +10,9 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp } from "lucide-react";
-import { useRef } from "react";
+import { ChangeEvent, useRef } from "react";
+
+declare var NesJs: any;
 
 const Joypad = {
   A: 0,
@@ -24,8 +26,8 @@ const Joypad = {
 };
 
 export default function Home() {
-  const NES = useRef(null);
-  const nesRef = useRef(null);
+  const NES = useRef<typeof NesJs>(null);
+  const nesRef = useRef<typeof NesJs>(null);
   const gameLoaded = useRef(null);
   const canvasRef = useRef(null);
 
@@ -49,20 +51,17 @@ export default function Home() {
 
     nesRef.current.bootup();
     nesRef.current.run();
-
-    console.log(nesRef.current);
   };
 
-  const handleFileSelected = (e) => {
-    const files = Array.from(e.target.files);
-    files[0].arrayBuffer().then((buffer) => {
-      gameLoaded.current = buffer;
-    });
-    console.log("files:", files);
-  };
-
-  const click = () => {
-    document.dispatchEvent(new KeyboardEvent("keydown", { key: "space" }));
+  const handleFileSelected = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const files: File[] = Array.from(e.target.files);
+      if (files.length) {
+        files[0].arrayBuffer().then((buffer: any) => {
+          gameLoaded.current = buffer;
+        });
+      }
+    }
   };
 
   const pressPadButton = (KEY: number) => {
@@ -73,10 +72,6 @@ export default function Home() {
   const releasePadButton = (KEY: number) => {
     if (!nesRef.current) return;
     nesRef.current.pad1.releaseButton(KEY);
-  };
-
-  const preventContextMenu = (e) => {
-    return;
   };
 
   return (
@@ -106,7 +101,6 @@ export default function Home() {
                   <Button
                     onMouseDown={() => pressPadButton(Joypad.UP)}
                     onClick={() => releasePadButton(Joypad.UP)}
-                    onContextMenu={preventContextMenu}
                     onTouchStart={() => pressPadButton(Joypad.UP)}
                     onPress={() => releasePadButton(Joypad.UP)}
                   >

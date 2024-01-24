@@ -10,10 +10,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { speak } from "@repo/elevenlabs";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 export default function Home() {
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [message, setMessage] = useState("");
 
   const handleSpeak = useCallback(async () => {
@@ -21,7 +21,9 @@ export default function Home() {
     const audio = await speak(message);
     const url = URL.createObjectURL(new Blob([audio]));
 
-    videoRef.current.src = url;
+    if (videoRef.current) {
+      videoRef.current.src = url;
+    }
 
     console.log({ audio });
   }, [message]);
