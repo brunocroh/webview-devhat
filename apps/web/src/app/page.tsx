@@ -12,7 +12,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-2 mt-6 overflow-x-none overflow-hidden">
-      <div className="w-full pt-12">
+      <div className="w-full max-w-xl h-full mt-12">
         <Card className="m-2">
           <CardHeader className="flex items-center">
             <CardTitle>Demo Select</CardTitle>
