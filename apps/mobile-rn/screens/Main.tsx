@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -8,9 +8,16 @@ import WebView from "react-native-webview";
 export default function Main() {
   const insets = useSafeAreaInsets();
 
+  console.log({ insets });
+
   return (
     <SafeAreaView>
-      <View style={{ ...styles.container }}></View>
+      <View style={{ ...styles.container }}>
+        <WebView
+          style={styles.webview}
+          source={{ uri: "http://localhost:3000" }}
+        ></WebView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -18,10 +25,10 @@ export default function Main() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: "100%",
   },
   webview: {
-    backgroundColor: "blue",
-    width: 380,
-    height: 500,
+    width: 370,
+    height: 600,
   },
 });

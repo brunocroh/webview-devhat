@@ -2,7 +2,7 @@ import axios from "axios";
 
 const headers = {
   Accept: "audio/mpeg",
-  "xi-api-key": process.env.ELEVENLABS_API_KEY,
+  "xi-api-key": process.env.NEXT_PUBLIC_ELEVENLABS_API_KEY,
   "Content-Type": "application/json",
 };
 

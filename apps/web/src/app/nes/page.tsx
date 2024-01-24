@@ -75,21 +75,25 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-2 mt-6">
-      <div className="w-full h-full mt-12">
-        <Card className="m-2">
+    <main className="flex min-h-screen  flex-col items-center p-2 mt-6">
+      <div className="w-full h-full max-w-xl mt-12 bg-blue-300 rounded-lg">
+        <Card className="m-2 bg-blue-400">
           <CardHeader>
-            <CardTitle>Nes</CardTitle>
+            <CardTitle>Nes Emulator</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col gap-5">
-            <div className="w-full flex flex-row gap-2">
-              <Input onChange={handleFileSelected} type="file" />
+          <CardContent className="flex flex-col gap-5 ">
+            <div className="w-full flex flex-row gap-2 items-end">
+              <Input
+                onChange={handleFileSelected}
+                type="file"
+                placeholder="Escolha uma rom"
+              />
               <Button onClick={startGame}>Criar</Button>
             </div>
-            <div className="w-full items-center">
-              <Card className="w-82 h-82 flex items-center">
+            <div className="items-center">
+              <Card className="flex items-center justify-center">
                 <canvas
-                  className="w-full h-full"
+                  className="w-96 h-96"
                   ref={canvasRef}
                   id="gameCanvas"
                 ></canvas>

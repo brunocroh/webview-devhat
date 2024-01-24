@@ -14,18 +14,18 @@ import { useCallback, useRef, useState } from "react";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [loaded, setLoaded] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleSpeak = useCallback(async () => {
-    console.log({ message });
     const audio = await speak(message);
     const url = URL.createObjectURL(new Blob([audio]));
+
+    setLoaded(true);
 
     if (videoRef.current) {
       videoRef.current.src = url;
     }
-
-    console.log({ audio });
   }, [message]);
 
   return (
@@ -40,6 +40,7 @@ export default function Home() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             ></Input>
+
             <video
               ref={videoRef}
               id="videoPlayer"
