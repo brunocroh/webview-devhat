@@ -11,20 +11,20 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-2 mt-6 overflow-x-none">
-      <div className="w-full h-full mt-12">
+    <main className="flex min-h-screen flex-col items-center p-2 mt-6 overflow-x-none overflow-hidden">
+      <div className="w-full pt-12">
         <Card className="m-2">
-          <CardHeader>
-            <CardTitle>Teste</CardTitle>
+          <CardHeader className="flex items-center">
+            <CardTitle>Demo Select</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col">
-            <Link href="/voice">
-              <Button>
+          <CardContent className="flex flex-col w-full gap-3">
+            <Link href="/voice" className="w-full">
+              <Button className="w-full">
                 Go to Voice <ArrowRight />
               </Button>
             </Link>
-            <Link href="/nes">
-              <Button>
+            <Link href="/nes" className="w-full">
+              <Button className="w-full">
                 Go to NES <ArrowRight />
               </Button>
             </Link>

@@ -14,8 +14,9 @@ export default function Main() {
     <SafeAreaView>
       <View style={{ ...styles.container }}>
         <WebView
+          scrollEnabled={false}
           style={styles.webview}
-          source={{ uri: "http://localhost:3000" }}
+          source={{ uri: "http://localhost:3000?webview=true" }}
         ></WebView>
       </View>
     </SafeAreaView>
@@ -29,6 +30,6 @@ const styles = StyleSheet.create({
   },
   webview: {
     width: 370,
-    height: 600,
+    backgroundColor: "blue",
   },
 });

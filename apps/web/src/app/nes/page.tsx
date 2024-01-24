@@ -93,7 +93,7 @@ export default function Home() {
             <div className="items-center">
               <Card className="flex items-center justify-center">
                 <canvas
-                  className="w-96 h-96"
+                  className="w-80 h-80"
                   ref={canvasRef}
                   id="gameCanvas"
                 ></canvas>

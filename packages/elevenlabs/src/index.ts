@@ -6,7 +6,10 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const speak = async (text: string) => {
+export const speak = async (
+  text: string,
+  voice: string = "Jx8YyCmL25lLJ635eG8w",
+) => {
   try {
     const body = JSON.stringify({
       text: text,
@@ -18,7 +21,7 @@ export const speak = async (text: string) => {
     });
 
     const response = await axios.post(
-      "https://api.elevenlabs.io/v1/text-to-speech/Jx8YyCmL25lLJ635eG8w",
+      `https://api.elevenlabs.io/v1/text-to-speech/${voice}`,
       body,
       {
         headers: headers,
