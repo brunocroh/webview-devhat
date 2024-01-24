@@ -1,6 +1,4 @@
-import * as fs from "fs";
-import axios, { AxiosError } from "axios";
-import { upload } from "@repo/aws";
+import axios from "axios";
 
 const headers = {
   Accept: "audio/mpeg",
@@ -20,43 +18,15 @@ export const speak = async (text: string) => {
     });
 
     const response = await axios.post(
-      "https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM",
+      "https://api.elevenlabs.io/v1/text-to-speech/Jx8YyCmL25lLJ635eG8w",
       body,
       {
         headers: headers,
-        responseType: "stream",
+        responseType: "blob",
       },
     );
 
     return response.data;
-  } catch (error: any) {
-    console.log({ errorSpeak: error.response.data });
-  }
-};
-
-export const speakToS3 = async (text: string) => {
-  const audioStream = await speak(text);
-  return upload(audioStream);
-};
-
-export const speakToFile = async (text: string, fileName: string) => {
-  try {
-    const audioStream = await speak(text);
-
-    audioStream.pipe(fs.createWriteStream(fileName));
-
-    const writeStream = fs.createWriteStream(fileName);
-    audioStream.pipe(writeStream);
-
-    return new Promise((resolve, reject) => {
-      const responseJson = {
-        status: "ok",
-        fileName: fileName,
-      };
-      writeStream.on("finish", () => resolve(responseJson));
-
-      writeStream.on("error", reject);
-    });
   } catch (error: any) {
     console.log({ errorSpeak: error.response.data });
   }

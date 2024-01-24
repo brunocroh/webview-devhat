@@ -10,12 +10,7 @@ export default function Main() {
 
   return (
     <SafeAreaView>
-      <View style={{ ...styles.container }}>
-        <WebView
-          style={styles.webview}
-          source={{ uri: "http://localhost:3000" }}
-        ></WebView>
-      </View>
+      <View style={{ ...styles.container }}></View>
     </SafeAreaView>
   );
 }
