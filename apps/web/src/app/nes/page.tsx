@@ -88,7 +88,7 @@ export default function Home() {
                 type="file"
                 placeholder="Escolha uma rom"
               />
-              <Button onClick={startGame}>Criar</Button>
+              <Button onClick={startGame}>Load</Button>
             </div>
             <div className="items-center">
               <Card className="flex items-center justify-center">

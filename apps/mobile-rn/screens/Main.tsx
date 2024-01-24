@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -8,15 +8,13 @@ import WebView from "react-native-webview";
 export default function Main() {
   const insets = useSafeAreaInsets();
 
-  console.log({ insets });
-
   return (
     <SafeAreaView>
       <View style={{ ...styles.container }}>
         <WebView
           scrollEnabled={false}
           style={styles.webview}
-          source={{ uri: "http://localhost:3000?webview=true" }}
+          source={{ uri: "https://webview-devhat-web.vercel.app/" }}
         ></WebView>
       </View>
     </SafeAreaView>
